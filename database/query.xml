@@ -1,0 +1,85 @@
+<root>
+    <Examples>
+        <Example>
+            <ID>1</ID>
+            <Label>select All Suppliers</Label>
+            <Description>description and explanation of the query</Description>
+            <Code>xquery version "3.1"; doc("/db/JSAPP/db.xml")//Suppliers</Code>
+            <funName>getSuppliers</funName>
+        </Example>
+        <Example>
+            <ID>2</ID>
+            <Label>select All deplyments</Label>
+            <Description>description and explanation of the query</Description>
+            <Code>xquery version "3.1";
+  doc("/db/JSAPP/db.xml")//Deployments</Code>
+            <funName>getDeployment</funName>
+        </Example>
+        <Example>
+            <ID>3</ID>
+            <Label>select All deplyments 2</Label>
+            <Description>joining the ProductID with Products table and SupplierID with Supliers table and extract the name of product and supplier</Description>
+            <Code>
+                let $root := doc("db/JSAPP/db.xml")/root
+                for $deployment in $root/Deployments/Deployment
+                let $product-id := $deployment/ProductID
+                let $supplier-id := $deployment/SupplierID
+                let $product := $root/Products/Product[ProductID = $product-id]
+                let $supplier := $root/Suppliers/Supplier[SupplierID = $supplier-id]
+                return
+                    &lt;DeploymentDetailed&gt;
+                        {$deployment/DeploymentID}
+                        {$product/ProductName}
+                        {$supplier/SupplierName}
+                        {$deployment/DeploymentDate}
+                        {$deployment/Location}
+                        {$deployment/Quantity}
+                    &lt;/DeploymentDetailed&gt;
+            </Code>
+            <funName>getDeploymentDetailed</funName>
+        </Example>
+        <Example>
+            <ID>4</ID>
+            <Label>select Products and Prices</Label>
+            <Description>Find the names and prices of all products</Description>
+            <Code>xquery version "3.1";
+                for $product in //Product
+                return ($product/ProductName/text(), $product/Price/text())
+            </Code>
+            <funName>getProductsPrices</funName>
+        </Example>
+        <Example>
+            <ID>5</ID>
+            <Label>select Deployment for ProductID</Label>
+            <Description>Retrieve the deployment information for a specific product (e.g., ProductID = 1):</Description>
+            <Code>xquery version "3.1";
+                let $productId := 1
+                for $deployment in //Deployment[ProductID = $productId]
+                return $deployment
+            </Code>
+            <funName>getDeploymentByProductID</funName>
+        </Example>
+        <Example>
+            <ID>6</ID>
+            <Label>select Quantity Delivered for ProductID</Label>
+            <Description>Get the total quantity of a specific product deployed across all locations (e.g., ProductID = 1):</Description>
+            <Code>xquery version "3.1";
+                    let $productId := 1
+                    let $deployments := //Deployment[ProductID = $productId]
+                    return sum($deployments/Quantity)
+            </Code>
+            <funName>getSumQuantityDelivered</funName>
+        </Example>
+        <Example>
+            <ID>7</ID>
+            <Label>find Supplier for specific location</Label>
+            <Description>Find the suppliers in a specific location (e.g., Location = "Seoul, South Korea"):</Description>
+            <Code>
+                let $location := "Seoul, South Korea"
+                for $supplier in //Supplier[Location = $location]
+                return $supplier
+            </Code>
+            <funName>getSupplierByLocation</funName>
+        </Example>
+    </Examples>
+</root>

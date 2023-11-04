@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <Suppliers>
+        <Supplier>
+            <SupplierID>1</SupplierID>
+            <SupplierName>Acme Corporation</SupplierName>
+            <ContactName>John Smith</ContactName>
+            <ContactEmail>john.smith@acmecorp.com</ContactEmail>
+            <Location>123 Main Street, Anytown, CA 91234</Location>
+        </Supplier>
+    </Suppliers>
+    <Products>
+        <Product>
+            <ProductID>1</ProductID>
+            <ProductName>Apple iPhone 13 Pro Max</ProductName>
+            <Description>The latest and greatest iPhone from Apple, with a powerful A15 Bionic chip, a triple-lens camera system, and a long-lasting battery.</Description>
+            <Price>1,099.00</Price>
+        </Product>
+</Products>
+<Deployments>
+    <Deployment>
+        <DeploymentID>1</DeploymentID>
+        <ProductID>6</ProductID>
+        <SupplierID>8</SupplierID>
+        <DeploymentDate>2023-10-26</DeploymentDate>
+        <Location>Seoul, South Korea</Location>
+        <Quantity>10</Quantity>
+    </Deployment>
+</Deployments>
+</root>

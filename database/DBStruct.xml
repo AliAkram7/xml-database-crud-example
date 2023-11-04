@@ -1,0 +1,29 @@
+<Database>
+	<Table Name="Supplier">
+		<Columns>
+			<Column Name="SupplierID" Type="Primary Key" />
+			<Column Name="SupplierName" Type="String" />
+			<Column Name="ContactName" Type="String" />
+			<Column Name="ContactEmail" Type="String" />
+			<Column Name="Location" Type="String" />
+		</Columns>
+	</Table>
+	<Table Name="Product">
+		<Columns>
+			<Column Name="ProductID" Type="Primary Key" />
+			<Column Name="ProductName" Type="String" />
+			<Column Name="Description" Type="String" />
+			<Column Name="Price" Type="Decimal" />
+		</Columns>
+	</Table>
+	<Table Name="Deployment">
+		<Columns>
+			<Column Name="DeploymentID" Type="Primary Key" />
+			<Column Name="ProductID" Type="Foreign Key" References="Product(ProductID)" />
+			<Column Name="SupplierID" Type="Foreign Key" References="Supplier(SupplierID)" />
+			<Column Name="DeploymentDate" Type="Date" />
+			<Column Name="Location" Type="String" />
+			<Column Name="Quantity" Type="String" />
+		</Columns>
+	</Table>
+</Database>
